@@ -11,7 +11,11 @@ function addTodoList() {
     }
     masterTodoList.push(newTodo);
     document.getElementById("user-input").value = "";
-    updateTodoList()
+    updateTodoList();
+    
+localStorage.setItem("storeItem", JSON.stringify(masterTodoList));
+
+retrievedObject = JSON.parse(localStorage.getItem("storeItem"));
 }
 
 function updateTodoList() {
@@ -80,3 +84,11 @@ function checkShowTask() {
 function showAllTask() {
     updateTodoList()
 }
+
+document.getElementById("user-input")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("add-button").click();
+    }
+});
